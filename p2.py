@@ -7,4 +7,5 @@ def main(l):
 		main(l)
 
 if __name__ == '__main__':
-   main([1,2])
+	import boilerplate
+	boilerplate.all(main())

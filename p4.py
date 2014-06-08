@@ -1,4 +1,3 @@
-import time
 def main():
 	i = 999
 	j = 999
@@ -14,6 +13,5 @@ def is_palindrome(n):
 	return str(n) == str(n)[::-1]
 
 if __name__ == '__main__':
-	start_time = time.time()
-	print main()
-	print time.time() - start_time
+	import boilerplate
+	boilerplate.all(main())
