@@ -1,5 +1,5 @@
 import numpy
-def main(n): # greatest product of 4 adjacent numbers (8 diff directions including diagonal)
+def main(): # greatest product of 4 adjacent numbers (8 diff directions including diagonal)
 	lines = open('p11.in').read().split('\n') #file -> list
 	arr = []
 	for i in lines:
@@ -27,5 +27,5 @@ def main(n): # greatest product of 4 adjacent numbers (8 diff directions includi
 	return 'biggest_prod', biggest_prod
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main(13)) 
+	import boilerplate, time
+	boilerplate.all(time.time(),main())

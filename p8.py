@@ -9,5 +9,5 @@ def main(n): #Find the thirteen adjacent digits in the 1000-digit number that ha
 	return biggest_prod
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main(13)) 
+	import boilerplate, time
+	boilerplate.all(time.time(),main(13))

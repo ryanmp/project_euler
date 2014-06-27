@@ -3,8 +3,8 @@
 
 import time
 
-def all(x):
-	start_time = time.time()
+def all(t, x):
+	start_time = t
 	ret = x
 	print "answer:", ret
 	run_time = time.time() - start_time

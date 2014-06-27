@@ -6,5 +6,5 @@ def main():
 	return square_of_sums - sum_of_squares
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main())
+	import boilerplate, time
+	boilerplate.all(time.time(),main())

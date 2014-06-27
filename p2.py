@@ -7,5 +7,5 @@ def main(l):
 		main(l)
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main())
+	import boilerplate, time
+	boilerplate.all(time.time(),main())

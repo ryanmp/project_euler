@@ -9,5 +9,5 @@ def main(n):
 	return prime_factors[-1]
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main())
+	import boilerplate, time
+	boilerplate.all(time.time(),main())

@@ -12,5 +12,5 @@ def main(): #brute force is too slow...
 		n += 1
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main())
+	import boilerplate, time
+	boilerplate.all(time.time(),main())

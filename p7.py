@@ -24,5 +24,5 @@ def sieved(n,s):
 	return False
 
 if __name__ == '__main__':
-	import boilerplate
-	boilerplate.all(main(10001)) # gotta be bigger than the size of our sieve
+	import boilerplate, time
+	boilerplate.all(time.time(),main(10001))
