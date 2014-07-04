@@ -45,3 +45,4 @@ g = numpy.array(games[0])
 
 if __name__ == '__main__':
 	import boilerplate, time
+	boilerplate.all(time.time(),main())
