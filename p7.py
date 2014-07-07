@@ -12,11 +12,10 @@ def main(n): #What is the 10 001st prime number?
 	return i
 
 def is_prime(n):
-	factors = 0
-	for i in xrange(1,n+1):
-		if n%i == 0: factors += 1
-	if factors == 2: return True
-	else: return False 
+	for i in xrange(2,int(math.sqrt(n))):
+		if n%i == 0:
+			return False
+	return True
 
 def sieved(n,s):
 	for i in s:
