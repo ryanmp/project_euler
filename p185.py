@@ -4,8 +4,7 @@ I don't know what sort of function to use for simulated annealing
 
 '''
 
-import random
-import math
+import random, sys, math
 
 def main():
 	return 0
@@ -28,7 +27,6 @@ def rate_answer(guess, data):
 	for i in data:
 		diff = math.fabs(num_correct(i[0],guess) - i[1])
 		if diff>0:
-			diff = 1 + math.log(diff) 
 			val += diff
 	return val
 
@@ -41,8 +39,9 @@ def num_correct(x,y):
 		if i==j: ret += 1
 	return ret
 
-def mod_guess(guess,idx):
-	r = str(random.randint(0,9))
+def mod_guess(guess,idx,new):
+	#r = str(random.randint(0,9))
+	r = new
 	new_guess = guess[:idx] + r + guess[idx+1:]
 	return new_guess
 
@@ -63,6 +62,7 @@ print 'a guess...', r
 #print rate_answer(r,data)
 
 # hill climb w/ simulated annealing
+'''
 temp = 1000
 x = 1
 for n in xrange(1,200): # decreasing temp
@@ -70,14 +70,29 @@ for n in xrange(1,200): # decreasing temp
 	for m in xrange(2): # reps per temp
 		for i in xrange(16): # rotate through each val
 			original_val = rate_answer(r,data)
-			new_guess = mod_guess(r,i)
+			new_guess = mod_guess(r,i,str(random.randint(0,9)))
 			new_val = rate_answer(new_guess,data)
 			if new_val < original_val + temp*50*(random.random()-.5)/(temp*x): # temp=simulating annealing
 				
 				print new_val, new_guess, temp*50*(random.random()-.5)/(temp*x)
 				r = new_guess
 				original_val = new_val
+'''
 
+
+# another hill climb... doing a full rotation for each digit now...
+best_val = sys.maxint
+for rotation in xrange(30):
+	for which_digit in xrange(16):
+		for idx in xrange(10):
+			new_guess = mod_guess(r,which_digit,str(idx))
+			new_val = rate_answer(new_guess,data)
+			if new_val < best_val:
+				print new_guess, new_val # just print improvements
+				best_val = new_val
+				best_guess = new_guess
+	r = best_guess # keeping the best guess from digit rotation
+print best_val, best_guess
 
 
 if __name__ == '__main__':
