@@ -4,7 +4,7 @@ import numpy
 
 def main(): 
 
-	f = open('p96.in')
+	f = open('p096.in')
 	all_games = format_input(f)
 	g = numpy.array(all_games[0]) # just the first game
 

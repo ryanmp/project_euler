@@ -1,7 +1,7 @@
 def main(): # maximum path-sum from top to bottom
 
 	# input to array ( 'p18_test.in' for a smaller test set )
-	lines = open('p18.in').read().split('\n') #file -> list
+	lines = open('p018.in').read().split('\n') #file -> list
 	arr = []
 	for i in lines:
 		temp = i.split(' ')

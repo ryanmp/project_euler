@@ -11,7 +11,7 @@ from random import random
 
 
 def main():
-	lines = open('p81.in').read().split('\n')
+	lines = open('p081.in').read().split('\n')
 	arr = []
 	for i in lines:
 		temp = i.split(',')

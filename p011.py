@@ -1,6 +1,6 @@
 import numpy
 def main(): # greatest product of 4 adjacent numbers (8 diff directions including diagonal)
-	lines = open('p11.in').read().split('\n') #file -> list
+	lines = open('p011.in').read().split('\n') #file -> list
 	arr = []
 	for i in lines:
 		temp = i.split(' ')

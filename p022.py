@@ -1,5 +1,5 @@
 def main(): 
-	names = open('p22.in').read().split(',') #file -> list
+	names = open('p022.in').read().split(',') #file -> list
 	names = [i[1:-1] for i in names] # strippign extra quotes
 	names.sort()
 

@@ -1,6 +1,6 @@
 def main(): # same as p18... but with a much larger test set
 
-	lines = open('p18.in').read().split('\n') #file -> list
+	lines = open('p067.in').read().split('\n') #file -> list
 	arr = []
 	for i in lines:
 		temp = i.split(' ')
