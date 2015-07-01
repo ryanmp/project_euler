@@ -7,11 +7,11 @@ def run_all():
 		if m:
 			all_problems.append(i)
 
-	all_problems = all_problems[0:4] # just do a couple for testing purposes
+	all_problems = all_problems[0:3] # just do a couple for testing purposes
 
 	# runs every solution script in this directory
 	for i in all_problems:
-		print i
+		print 'executing: ' + i
 		execfile(i, globals())
 
 # prints the number of lines in every p###.py file in this dir

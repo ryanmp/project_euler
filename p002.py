@@ -1,6 +1,6 @@
 def main():
 	l = [1,2]
-	inner(l)
+	return inner(l)
 
 def inner(l):
 	new = l[-2] + l[-1]
