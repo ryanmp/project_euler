@@ -17,7 +17,6 @@ That might be quicker than my current approach.
 from collections import deque
 import numpy as np
 
-
 def maxItemLength(a):
     maxLen = 0
     rows = len(a)
@@ -96,31 +95,46 @@ def primesfrom2to(n):
     return np.r_[2,3,((3*np.nonzero(sieve)[0]+1)|1)]
 
 
-
+# slower
+def is_prime(n):
+	for i in xrange(2,n-1,1):
+		if (n%i == 0):
+			return False
+	return True
 
 
 def main():
 
-	for x in xrange(2501,2511,2): # manually searching for the correct dimensional range
+	
+	for x in xrange(18901,18905,2): # manually searching for the correct dimensional range
 
 		dimensions = x
 
-		spiral_arr = create_spiral_array(dimensions)
+		#spiral_arr = create_spiral_array(dimensions)
 		#print2dList(spiral_arr)
+		arr = gen_seq(x)
 
 		num_of_diagonals = dimensions*2 - 1
+		num_of_prime_diagonals = 0
 
 		primes = set(primesfrom2to(dimensions**2))
-
-		num_of_prime_diagonals = 0
+		'''
 		for i in xrange(dimensions):
 			if spiral_arr[i][i] in primes:
 				num_of_prime_diagonals += 1
 			if spiral_arr[dimensions-1-i][i] in primes:
 				num_of_prime_diagonals += 1
+				'''
+		
+		for i in arr:
+			if i in primes:
+				num_of_prime_diagonals += 1
+
+
+				
 
 		print dimensions, (num_of_prime_diagonals*1.0/num_of_diagonals)*100	
-
+	
 
 
 
@@ -129,6 +143,21 @@ def main():
 
 
 
+
+
+# generate sequence
+
+def gen_seq(dims):
+	l = [1]
+	inc_amount = 2
+	new_cycle_add = 2
+	#dims = 7 # must be odd
+	for i in xrange(0,dims/2):
+		for j in xrange(0,4):
+			l.append(l[-1] + inc_amount)
+		inc_amount += new_cycle_add
+
+	return l
 
 
 

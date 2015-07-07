@@ -9,3 +9,5 @@ def all(t, x):
 	print "answer:", ret
 	run_time = time.time() - start_time
 	print "time:", run_time
+
+
