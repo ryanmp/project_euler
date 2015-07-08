@@ -56,7 +56,7 @@ def main():
 	#boilerplate.all(time.time(),solver_two(200))
 	reload(complexity)
 
-	complexity.run(solver_two,minn=3,maxn=800,num_samples=10)
+	complexity.run(solver_two,minn=3,maxn=200,num_samples=10)
 	
 # simplifying the process a bit...
 # this is currently returning a diff value than solver_one... so I'll 

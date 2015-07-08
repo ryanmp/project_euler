@@ -19,21 +19,25 @@ def run(z,minn,maxn,num_samples):
     l.sort()
 
     times = []
-    #set_sizes = [1,5,10,20,35,100,200,500]
-    set_sizes = l
+    
+    set_sizes2 = l
 
-    for n in set_sizes:
+    for n in set_sizes2:
         t0 = time.time()
         z(n)
         times.append(time.time() - t0)
 
 
     plt.yscale('log')
-    plt.xscale('log')
+
+    # log x scale if we have a wide enough range
+    if (set_sizes2[-1]-set_sizes2[0] > 1000):
+        plt.xscale('log')
 
 
-    norm_times = [(i/times[0])+set_sizes[1] for i in times]
+    norm_times = [(i/times[0])+set_sizes2[1] for i in times]
 
+    set_sizes = [1,5,10,20,35,100,200,500]
     x0 = [1 for i in set_sizes]
     x1 = [math.log(i) for i in set_sizes]
     x2 = [i for i in set_sizes]
@@ -48,12 +52,13 @@ def run(z,minn,maxn,num_samples):
     plt.plot(set_sizes,x4,ls='--',label='n^3')
     #plt.plot(set_sizes[0:5],x5,ls='--',label='2^n')
 
-    plt.plot(set_sizes[1:],norm_times[1:], marker='o', label='normalized run times')
+    plt.plot(set_sizes2,norm_times, marker='o', label='normalized run times')
 
     plt.ylabel('time')
     plt.xlabel('input size')
 
-    #plt.gca().set_xlim(left=1)
+    plt.gca().set_xlim(left=set_sizes[0],right=set_sizes[-1])
+
     plt.gca().set_ylim(bottom=0.01)
 
     plt.legend()
