@@ -2,8 +2,13 @@
 # I'm guessing this will be a search problem...
 import numpy
 
+
+f = open('p096.in')
+all_games = format_input(f)
+
 def main(): 
 
+	'''
 	f = open('p096.in')
 	all_games = format_input(f)
 	g = numpy.array(all_games[0]) # just the first game
@@ -17,7 +22,8 @@ def main():
 	# began
 	# this approach will only work if each step adds at least 1 fully determined cell
 	# otherwise we will need to turn it into a search problem
-
+	'''
+	
 	return 0
 
 
