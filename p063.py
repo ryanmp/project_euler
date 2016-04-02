@@ -1,28 +1,41 @@
-# How many n-digit positive integers exist which are also an nth power?
-def main(n):
-	count = 0
-	for i in xrange(1,n):
-		if has_nth_power(i):
-			count += 1
+'''
+The 5-digit number, 16807=7^5, is also a fifth power.
+Similarly, the 9-digit number, 134217728=8^9, is a ninth power.
 
-	return count
+How many n-digit positive integers exist which are also an nth power?
+'''
+
+from math import pow
+
+def main():
+	solutions = 0
+	for base in range(1, 10):
+	    for power in range(1, 22):
+
+	        val = int(pow(base, power))
+	        num_digits = digit_count(val)
+
+	        if num_digits == power:
+	            solutions += 1
+
+	        if num_digits > power:
+	            break 
+
+	return solutions
+
 
 def digit_count(n):
 	return len(str(n))
 
-def has_nth_power(n):
-	digits = digit_count(n)
-	base = 2
-	while(True):
-		val = base**digits
-		if val == n:
-			return True
-		elif val > n:
-			return False
-		else:
-			base += 1
 
 if __name__ == '__main__':
 	import boilerplate, time
-	# how do we determine the upper limit for n?
-	boilerplate.all(time.time(),main(100000)) 
+	boilerplate.all(time.time(),main())
+
+
+
+
+
+
+
+    
