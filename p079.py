@@ -14,7 +14,7 @@ passcode of unknown length.
 def main():
 
 	# grab text file of login attempts
-	attempts = [i[:3] for i in open('p79.in').read().split('\n')] #file -> list
+	attempts = [i[:3] for i in open('p079.in').read().split('\n')] #file -> list
 
 	'''
 	method:

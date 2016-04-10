@@ -22,6 +22,9 @@ def join_ints(l):
 
 if __name__ == '__main__':
 	import boilerplate, time
+
+	import resource
+	print resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 	boilerplate.all(time.time(),main())
 	# ha! So originally I started with the math
 	# approach, thinking that the factorials would

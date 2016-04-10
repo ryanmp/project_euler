@@ -10,5 +10,7 @@ def is_pyth_triple(a,b,c):
 	return (a*a + b*b == c*c)	
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main())
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)

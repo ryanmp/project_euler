@@ -22,5 +22,7 @@ def is_a_digit_factorial(n):
 	return (n == sum(arr))
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(70000))
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(90000), t, r)

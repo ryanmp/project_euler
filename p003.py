@@ -26,5 +26,8 @@ def is_prime(n):
 	return True
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(600851475143)) # under 10 seconds... I'll take it
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(600851475143), t, r)
+

@@ -1,17 +1,28 @@
+'''
+
+A palindromic number reads the same both ways.
+The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.
+
+Find the largest palindrome made from the product of two 3-digit numbers.
+
+'''
+
 def main():
-	i = 999
-	j = 999
-	while(True):
-		if is_palindrome(i*j):
-			return i*j
-		i -= 1
-		if is_palindrome(i*j):
-			return i*j
-		j -= 1
+	biggest = 0
+	for i in xrange(999, 100, -1):
+		for j in xrange(999, i, -1):
+			x = i*j
+			if x > biggest and is_palindrome(x): #checking x > biggest first since it is a cheaper operation
+				biggest = x
+
+	return biggest
 
 def is_palindrome(n):
 	return str(n) == str(n)[::-1]
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main())
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
+

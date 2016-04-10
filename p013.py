@@ -4,5 +4,7 @@ def main(): # first 10 digits of the sum of the following 100, 50-digit numbers
 	return int(ret[0:10]) #first 10 digits
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main())
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
