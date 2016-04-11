@@ -7,6 +7,7 @@ Find the sum of all the multiples of 3 or 5 below 1000
 
 '''
 
+# testing
 def main():
 	x = set([i for i in range(0,1000,3)])
 	y = set([i for i in range(0,1000,5)])

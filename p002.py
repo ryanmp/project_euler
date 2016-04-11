@@ -12,7 +12,7 @@ find the sum of the even-valued terms.
 
 def main():
 	final_list = fib_even_sum(1, 2, 2)
-	print final_list
+	return final_list
 
 def fib_even_sum(a, b, s):
 	a, b = b, a + b
