@@ -24,8 +24,10 @@ def main(): # greatest product of 4 adjacent numbers (8 diff directions includin
 				prod = numpy.product(n)
 				biggest_prod = max(prod, biggest_prod)
 
-	return 'biggest_prod', biggest_prod
+	return biggest_prod
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main())
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)

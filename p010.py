@@ -15,5 +15,7 @@ def primesfrom2to(n):
     return np.r_[2,3,((3*np.nonzero(sieve)[0]+1)|1)]
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(2000000)) # whew that's better
+    import boilerplate, time, resource
+    t = time.time()
+    r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    boilerplate.all(main(2000000), t, r) # whew that's better

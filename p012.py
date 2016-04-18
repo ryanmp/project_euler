@@ -1,17 +1,25 @@
 import math
 def main(n): # First triangle number to have over five hundred divisors?
-	i = 0; x = 0 # lower bound....
-	max_divisors = -1
+
+	i = 1
 	while (True):
-		x += 1; i += x
-		how_many_divisors = 0
-		for j in xrange(1,int(math.sqrt(i))):
-			if i%j==0: #is a divisor
-				how_many_divisors += 2 # always in pairs
-		max_divisors = max(max_divisors,how_many_divisors)
+		tri_num = tri_number(i)
+		how_many_divisors = len(factors(tri_num))
 		if how_many_divisors > n:
-			return i
+			return tri_num
+		i += 1
+
+def factors(n):    
+	return reduce(list.__add__, 
+		([i, n//i] for i in range(1, int(math.sqrt(n)) + 1) if n % i == 0))
+
+
+def tri_number(n):
+	return int(n*(n+1)/2.0)
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(500)) # under 10 seconds... good enough
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	#boilerplate.all(main(500), t, r)
+	boilerplate.all(main(500), t, r)
