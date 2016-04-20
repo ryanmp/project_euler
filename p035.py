@@ -1,8 +1,20 @@
-import numpy as np
+'''
+
+The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime.
+
+There are thirteen such primes below 100:
+2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
+
+How many circular primes are there below one million?
+
+'''
+
 from collections import deque
-def main(n): # how many circular primes below 1 mil?
+
+def main(): # how many circular primes below 1 mil?
 	
-	primes = set(primesfrom2to(n)) # all normal primes
+	n = 1000000
+	primes = set(primes_list(n)) # all normal primes
 	c_primes = []
 
 	for i in primes:
@@ -23,19 +35,20 @@ def main(n): # how many circular primes below 1 mil?
 
 	return len(c_primes) # how many c_primes
 		
-
-def primesfrom2to(n):
-    # http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
-    """ Input n>=6, Returns a array of primes, 2 <= p < n """
-    sieve = np.ones(n/3 + (n%6==2), dtype=np.bool)
-    sieve[0] = False
-    for i in xrange(int(n**0.5)/3+1):
+def primes_list(n):
+     # http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
+    """ Returns  a list of primes < n """
+    sieve = [True] * n
+    for i in xrange(3,int(n**0.5)+1,2):
         if sieve[i]:
-            k=3*i+1|1
-            sieve[      ((k*k)/3)      ::2*k] = False
-            sieve[(k*k+4*k-2*k*(i&1))/3::2*k] = False
-    return np.r_[2,3,((3*np.nonzero(sieve)[0]+1)|1)]
+            sieve[i*i::2*i]=[False]*((n-i*i-1)/(2*i)+1)
+    return [2] + [i for i in xrange(3,n,2) if sieve[i]]
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(1000000))
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
+
+
+

@@ -16,8 +16,9 @@ when writing out numbers is in compliance with British usage.
 d = {1:3, 2:3, 3:5, 4:4, 5:4, 6:3, 7:5, 8:5, 9:4, 10:3, 11:6, 12:6, 13:8, 14:8, 15:7,
 	16:7, 17:9, 18:8, 19:8, 20:6, 30:6, 40:5, 50:5, 60:6, 70:7, 80:6, 90:6}
 
-def main(n):
+def main():
 
+	n = 1000
 	# don't forget 'hundred' & 'and' (...that'll be in the conditional logic)
 
 	total_count = 0
@@ -54,6 +55,9 @@ def get_char_cnt(i):
 	return count
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(1000))
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
+
 

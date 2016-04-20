@@ -1,7 +1,8 @@
 from itertools import permutations, combinations
 from math import factorial as f
-def main(n): # how many lattice-routes (right, down) are there through a 20x20 grid?
+def main(): # how many lattice-routes (right, down) are there through a 20x20 grid?
 	
+	n = (20,20)
 	path_length = n[0]
 
 	'''
@@ -25,6 +26,8 @@ def main(n): # how many lattice-routes (right, down) are there through a 20x20 g
 	return ret
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main((20,20)))
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
 

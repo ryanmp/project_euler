@@ -24,5 +24,7 @@ def main(): # maximum path-sum from top to bottom
 	return add_next(0,arr,0,0,0)
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main()) # about 1 second... not too bad
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)

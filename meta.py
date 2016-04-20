@@ -7,7 +7,7 @@ def run_all():
 		if m:
 			all_problems.append(i)
 
-	all_problems = all_problems[0:12] # just do a couple for testing purposes
+	all_problems = all_problems[0:18] # just do a couple for testing purposes
 
 	# runs every solution script in this directory
 	for i in all_problems:
