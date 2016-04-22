@@ -17,27 +17,23 @@ Find the first four consecutive integers to have four distinct prime factors. Wh
 
 from math import sqrt
 
-
 def is_prime(n):
 	if n == 1:
 		return False
-	for i in xrange(2,int(math.sqrt(n))+1):
+	for i in xrange(2,int(n**0.5)+1):
 		if n%i == 0:
 			return False
 	return True
 
-
 def count_prime_factors(n):
-
 	results = set()
-	for i in xrange(1, int(math.sqrt(n)) + 1):
+	for i in xrange(1, int(n**0.5) + 1):
 		if n % i == 0:
 			if is_prime(i):
 				results.add(i)
 			if is_prime(int(n/i)):
 				results.add(int(n/i))
 	return len(results)
-
 
 def main():
 	# find sequence
@@ -54,8 +50,6 @@ def main():
 		if seq_count == n:
 			return i-n+1
 			break
-
-
 
 if __name__ == '__main__':
 	import boilerplate, time, resource

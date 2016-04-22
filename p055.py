@@ -1,26 +1,32 @@
 '''
-Lychrel numbers:
+
+If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
+
+Not all numbers produce palindromes so quickly. For example,
+
+349 + 943 = 1292,
+1292 + 2921 = 4213
+4213 + 3124 = 7337
+
+That is, 349 took three iterations to arrive at a palindrome.
+
+Although no one has proved it yet, it is thought that some numbers, like 196, never produce a palindrome. A number that never forms a palindrome through the reverse and add process is called a Lychrel number. Due to the theoretical nature of these numbers, and for the purpose of this problem, we shall assume that a number is Lychrel until proven otherwise. In addition you are given that for every number below ten-thousand, it will either (i) become a palindrome in less than fifty iterations, or, (ii) no one, with all the computing power that exists, has managed so far to map it to a palindrome. In fact, 10677 is the first number to be shown to require over fifty iterations before producing a palindrome: 4668731596684224866951378664 (53 iterations, 28-digits).
+
+Surprisingly, there are palindromic numbers that are themselves Lychrel numbers; the first example is 4994.
+
 How many Lychrel numbers are there below ten-thousand?
-(A big caveat -  we are assuming that if it doesn't become a palindrome within 50
-	iterations, then it is a Lychrel number)
+
+NOTE: Wording was modified slightly on 24 April 2007 to emphasise the theoretical nature of Lychrel numbers.
 
 '''
 
-def main(n):
+def main():
+	n = 10000
 	how_many_lych_nums = 0
 	for i in xrange(1,n+1):
 		if is_lych_num(i):
 			how_many_lych_nums += 1
 	return how_many_lych_nums
-
-# input: array of ints
-# e.g.: [1,2,3,4]
-# output: a single int
-# e.g.: 1234
-def join_ints(l):
-	l = [str(i) for i in l] # to array of chars
-	as_str = ''.join(l)
-	return int(as_str)
 
 # e.g.s 
 # in: 123, out: false
@@ -54,7 +60,8 @@ def is_lych_num(n):
 	return inner(n, idx)
 
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(10000))
-
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
 
