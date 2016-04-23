@@ -23,6 +23,8 @@ decrypt the message and find the sum of the ASCII values in the original text.
 
 '''
 
+import collections
+
 msg = [int(i) for i in open('p059.in').read().split(',')] #file -> list
 
 keys = []
@@ -31,17 +33,13 @@ for i in xrange(ord('a'), ord('z') + 1):
 		for k in xrange(ord('a'), ord('z') + 1):
 			keys.append((i,j,k))
 
-
+# I should say... this method will also fail if the selection is especially atypical and doesn't include any common words
+# but that's pretty unlikely
 common_words = ['the','be','to','of','and','a','in','that','have','I','it','for','not','on','with','he']
 common_words = [' ' + word + ' ' for word in common_words]
 
-
-scores = []
-
 def main():
-
 	for i in xrange(len(keys)):
-
 		d_msg = []
 		for n in xrange(len(msg)):
 			if n%3==0:
@@ -51,21 +49,55 @@ def main():
 			if n%3==2:
 				d_msg.append(msg[n] ^ keys[i][2])
 
-		as_string = ''.join([chr(i) for i in d_msg])
+		as_string = ''.join([chr(x) for x in d_msg])
 
 		matches = 0
 		for word in common_words:
 			if word in as_string:
 				matches += 1
 
-		if matches == 12:
-			print as_string, i, keys[i]
+		# in reality, I should just go with the score that has the most matches... but this is faster and should typically work
+		if matches > len(common_words)/4: 
+			return sum(d_msg)
 
-		scores.append(matches)
 
+# This would in principle be much faster... but I can't find a good way to generalize it
+# (i.e. if the small sample only partially matches up with the typical frequencies, it will fail )
+def freq_method():
+	letter_freqs = {
+		ord(" "): 0.140,
+		ord("e"): 0.127,
+		ord("t"): 0.090,
+		ord("a"): 0.082
+	}
+	letter_freqs = sorted( ((v,k) for k,v in letter_freqs.iteritems()), reverse=True)
+	bins = [[],[],[]]
+	freqs = [{},{},{}]
+	for n in xrange(len(msg)):
+		if n%3==0:
+			bins[0].append(msg[n])
+		if n%3==1:
+			bins[1].append(msg[n])
+		if n%3==2:
+			bins[2].append(msg[n])
+	for x in xrange(len(bins)):
+		for i in collections.Counter(bins[x]).most_common(len(letter_freqs)):
+			freqs[x][i[0]] = (i[1]*1.0)/len(bins[x]) 
+		freqs[x] = sorted( ((v,k) for k,v in freqs[x].iteritems()), reverse=True)
+	for x in xrange(len(bins)):
+		print "---"
+		for i in xrange(len(letter_freqs)):
+			for j in xrange(len(letter_freqs)):
+				print x, freqs[x][i][1], letter_freqs[j][1], freqs[x][i][1] ^ letter_freqs[j][1]
 
 if __name__ == '__main__':
 	import boilerplate, time, resource
 	t = time.time()
 	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 	boilerplate.all(main(), t, r)
+
+
+
+
+
+
