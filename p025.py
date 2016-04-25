@@ -1,4 +1,6 @@
-def main(n): # which term in fib-seq is the first with 1000 digits
+def main(): # which term in fib-seq is the first with 1000 digits
+	n = 1000
+
 	a = 1
 	b = 1
 	count = 3
@@ -10,5 +12,7 @@ def main(n): # which term in fib-seq is the first with 1000 digits
 	return count
 	
 if __name__ == '__main__':
-	import boilerplate, time
-	boilerplate.all(time.time(),main(1000))
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)

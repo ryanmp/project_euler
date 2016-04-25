@@ -21,11 +21,10 @@ def join_ints(l):
 	return int(as_str)
 
 if __name__ == '__main__':
-	import boilerplate, time
-
-	import resource
-	print resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-	boilerplate.all(time.time(),main())
+	import boilerplate, time, resource
+	t = time.time()
+	r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+	boilerplate.all(main(), t, r)
 	# ha! So originally I started with the math
 	# approach, thinking that the factorials would
 	# slow us down - but then I went back and tested
